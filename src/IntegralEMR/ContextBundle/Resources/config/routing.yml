@@ -1,0 +1,3 @@
+IntegralEMRContextBundle_homepage:
+    pattern:  /document/{uuid}
+    defaults: { _controller: IntegralEMRContextBundle:Default:index }
