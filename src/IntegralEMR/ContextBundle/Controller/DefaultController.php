@@ -21,11 +21,10 @@ class DefaultController extends Controller
         }
         return $this->render('IntegralEMRContextBundle:Default:index.html.twig', array('document' => $doc,  'test'=>$test));
     }
-    public function ContextBrowserAction($uuid,Request $request)
+    public function ContextBrowserAction(Request $request)
     {
-        $doc = $GLOBALS['em']->getRepository('library\doctrine\Entities\Document')->find($uuid);
-
-        return $this->render('IntegralEMRContextBundle:Default:index.html.twig', array('document' => $doc,  'test'=>"foo"));
+        $em=$GLOBALS['em'];
+        return $this->render('IntegralEMRContextBundle:ContextManager:index.html.twig', array());
         
     }
     

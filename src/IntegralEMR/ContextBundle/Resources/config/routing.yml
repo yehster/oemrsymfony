@@ -3,6 +3,6 @@ IntegralEMRContextBundle_homepage:
     defaults: { _controller: IntegralEMRContextBundle:Default:index }
 
 Manage_Context:
-    pattern:  /context_manager/{uuid}
+    pattern:  /context_manager/
     defaults: { _controller: IntegralEMRContextBundle:Default:ContextBrowser }
   
