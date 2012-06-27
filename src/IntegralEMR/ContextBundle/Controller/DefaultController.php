@@ -17,8 +17,16 @@ class DefaultController extends Controller
         $test=$request->get("test","default");
         if($doc==null)
         {
-            return new Response("no document found");
+            throw $this->createNotFoundException('Document Not Found');
         }
         return $this->render('IntegralEMRContextBundle:Default:index.html.twig', array('document' => $doc,  'test'=>$test));
     }
+    public function ContextBrowserAction($uuid,Request $request)
+    {
+        $doc = $GLOBALS['em']->getRepository('library\doctrine\Entities\Document')->find($uuid);
+
+        return $this->render('IntegralEMRContextBundle:Default:index.html.twig', array('document' => $doc,  'test'=>"foo"));
+        
+    }
+    
 }
