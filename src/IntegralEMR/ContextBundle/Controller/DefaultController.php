@@ -21,11 +21,19 @@ class DefaultController extends Controller
         }
         return $this->render('IntegralEMRContextBundle:Default:index.html.twig', array('document' => $doc,  'test'=>$test));
     }
+    
     public function ContextBrowserAction(Request $request)
     {
         $em=$GLOBALS['em'];
         $message=$request->get('foo',"default");
         return $this->render('IntegralEMRContextBundle:ContextManager:index.html.twig', array('msg'=>$message));
+        
+    }
+    
+    public function SearchKeywordAction($keywords)
+    {
+        $kws=explode(" ",$keywords);
+        return $this->render('IntegralEMRContextBundle:ContextManager:keyword.html.twig', array('kws'=>$kws));
         
     }
     

@@ -5,4 +5,9 @@ IntegralEMRContextBundle_homepage:
 Manage_Context:
     pattern:  /context_manager/
     defaults: { _controller: IntegralEMRContextBundle:Default:ContextBrowser }
+    
+Search_Keywords:
+    pattern: /keywords/{keywords}
+    defaults: { _controller: IntegralEMRContextBundle:Default:SearchKeyword }
+    
   
