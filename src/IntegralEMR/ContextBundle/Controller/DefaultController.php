@@ -30,11 +30,5 @@ class DefaultController extends Controller
         
     }
     
-    public function SearchKeywordAction($keywords)
-    {
-        $kws=explode(" ",$keywords);
-        return $this->render('IntegralEMRContextBundle:ContextManager:keyword.html.twig', array('kws'=>$kws));
-        
-    }
     
 }

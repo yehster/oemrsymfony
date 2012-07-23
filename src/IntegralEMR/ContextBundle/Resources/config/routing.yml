@@ -8,6 +8,5 @@ Manage_Context:
     
 Search_Keywords:
     pattern: /keywords/{keywords}
-    defaults: { _controller: IntegralEMRContextBundle:Default:SearchKeyword }
+    defaults: { _controller: IntegralEMRContextBundle:AjaxSearch:SearchKeyword }
     
-  

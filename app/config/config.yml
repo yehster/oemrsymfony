@@ -31,7 +31,7 @@ services:
     pdo:
         class: PDO
         arguments:
-            dsn:      "mysql:host=brain;dbname=openemr"
+            dsn:      "mysql:host=donaghy;dbname=openemr"
             user:     root
             password: mydbpwd
 
@@ -48,7 +48,6 @@ twig:
 assetic:
     debug:          %kernel.debug%
     use_controller: false
-    bundles:        [ ]
     #java: /usr/bin/java
     filters:
         cssrewrite: ~

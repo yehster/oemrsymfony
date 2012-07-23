@@ -1,9 +1,15 @@
 <h2>Keywords</h2>
 <table>
-    {% for kw in kws %}
+    {% for vc in vocab %}
         <tr>
             <td>
-                {{kw}}
+                {{vc.description}}
+            </td>
+            <td>
+                {{vc.code}}
+            </td>
+            <td>
+                {{vc.code_type}}
             </td>
         </tr>
     {% endfor %}
