@@ -51,10 +51,21 @@ function findVocab($searchString,$vocab_type)
         }
     }
     $longKWs=implode(" ",$longKW);
-    $entityType="library\doctrine\Entities\SNOMED\PreferredTerm";
-    $entityType="library\doctrine\Entities\LOINC\LOINCEntry";
-    $searchField="pt.str";
-    $searchField="pt.LONG_COMMON_NAME";
+    if($vocab_type=="LOINC")
+    {
+        $entityType="library\doctrine\Entities\LOINC\LOINCEntry";
+        $searchField="pt.LONG_COMMON_NAME";
+        $descFunc="getLONG_COMMON_NAME";
+        $idFunc="getLOINC_NUM";        
+    }
+    else if($vocab_type="SNOMED")
+    {
+        $entityType="library\doctrine\Entities\SNOMED\PreferredTerm";
+        $searchField="pt.str";
+        $descFunc="getSTR";
+        $idFunc="getAUI";
+        
+    }
         $qb = $GLOBALS['em']->createQueryBuilder()
                 ->select("pt,MATCH_AGAINST(".$searchField.",'".$longKWs."') as rel");
             if(count($longKW)>0)
@@ -75,20 +86,9 @@ function findVocab($searchString,$vocab_type)
     $qry=$qb->getQuery();
 
     $res=$qry->getResult();
-    if($vocab_type=="SNOMED")
+    foreach($res as $snResult)
     {
-        foreach($res as $snResult)
-        {
-            $retval[]=new VocabInfo($snResult[0]->getSTR(),$vocab_type,$snResult[0]->getAUI());
-        }
-    }
-    else if($vocab_type=="LOINC")
-    {
-        foreach($res as $snResult)
-        {
-            $retval[]=new VocabInfo($snResult[0]->getLONG_COMMON_NAME(),$vocab_type,$snResult[0]->getLOINC_NUM());
-        }
-        
+        $retval[]=new VocabInfo($snResult[0]->$descFunc(),$vocab_type,$snResult[0]->$idFunc());
     }
     return $retval;
 }
