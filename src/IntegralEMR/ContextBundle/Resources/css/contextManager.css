@@ -1,0 +1,19 @@
+/* 
+    Document   : contextManager
+    Created on : Jul 24, 2012, 11:22:46 AM
+    Author     : yehster
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+root { 
+    display: block;
+}
+
+#CodeSearch
+{
+    width: 33%;
+}
+div.section{
+    float:left;
+}

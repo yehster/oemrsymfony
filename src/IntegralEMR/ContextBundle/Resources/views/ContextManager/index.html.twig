@@ -5,13 +5,21 @@
 <title>OpenEMR Context Manager</title>
 </head>
 <h1>OpenEMR Context Manager</h1>
-{{msg}}
 
-<div id="CodeSearch">
+<div class='section' id="CodeSearch">
     <input type="text" id="keyword_input"/>
+    <br>
+    LOINC<input type="radio" value="LOINC" name="searchType" checked='true'/>
+    SNOMED<input type="radio" value="SNOMED" name="searchType"/>
     <div class='results'></div>
+</div>
+<div class='section' id="DocumentSection">
+    <input type="text" id="document_input"/>
 </div>
 {% javascripts '@IntegralEMRContextBundle/Resources/javascript/*' %}
     <script type="text/javascript" src="{{ asset_url }}"></script>
 {% endjavascripts %}
+{% stylesheets '@IntegralEMRContextBundle/Resources/css/*' %}
+    <link rel="stylesheet" href="{{ asset_url }}" />
+{% endstylesheets %}
 </html>

@@ -94,9 +94,9 @@ function findVocab($searchString,$vocab_type)
 }
 class AjaxSearchController extends Controller
 {
-    public function SearchKeywordAction($keywords)
+    public function SearchKeywordAction($keywords,$code_type)
     {
-        $vocab=findVocab($keywords,"LOINC");
+        $vocab=findVocab($keywords,$code_type);
         return $this->render('IntegralEMRContextBundle:ContextManager:keyword.html.twig', array("vocab"=>$vocab));
         
     }
