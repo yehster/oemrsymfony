@@ -92,6 +92,30 @@ function findVocab($searchString,$vocab_type)
     }
     return $retval;
 }
+
+function FindSections($keywords)
+{
+    $retval=array();
+    $toks=explode(" ",$keywords);
+    $qb = $GLOBALS['em']->createQueryBuilder();
+    $qb->select("sec")
+       ->from("library\doctrine\Entities\SectionHeading","sec");
+    $numToks=count($toks);
+    if($numToks>0)
+    {
+        $qb->where("sec.longDesc like :first");
+        $qb->setParameter("first","%".$toks[0]."%");
+    }
+    for($idx=1;$idx<$numToks;$idx++)
+    {
+        $qb->andWhere("sec.longDesc like :token".$idx);
+        $qb->setParameter("token".$idx,"%".$toks[$idx]."%");
+    }
+    $qry=$qb->getQuery();
+    $retval=$qry->getResult();
+    return $retval;
+    
+}
 class AjaxSearchController extends Controller
 {
     public function SearchKeywordAction($keywords,$code_type)
@@ -99,6 +123,12 @@ class AjaxSearchController extends Controller
         $vocab=findVocab($keywords,$code_type);
         return $this->render('IntegralEMRContextBundle:ContextManager:keyword.html.twig', array("vocab"=>$vocab));
         
+    }
+    
+    public function SearchDocsecAction($keywords)
+    {
+        $sections=FindSections($keywords);
+        return $this->render('IntegralEMRContextBundle:ContextManager:docsec.html.twig',array("sections"=>$sections));
     }
 
 }

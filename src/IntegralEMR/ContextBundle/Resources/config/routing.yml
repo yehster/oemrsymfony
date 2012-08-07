@@ -10,3 +10,7 @@ Search_Keywords:
     pattern: /keywords/{keywords}/{code_type}
     defaults: { _controller: IntegralEMRContextBundle:AjaxSearch:SearchKeyword }
     
+Search_document_sections:
+  pattern: /section/{keywords}
+  defaults: { _controller: IntegralEMRContextBundle:AjaxSearch:SearchDocsec,keywords: "Physical Exam" }
+    

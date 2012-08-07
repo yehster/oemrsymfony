@@ -1,0 +1,11 @@
+<h2>Document Sections</h2>
+<table>
+    {% for sec in sections %}
+        <tr>
+            <td>
+                {{sec.getLongDesc()}}
+            </td>
+        </tr>
+    {% endfor %}
+
+</table>
