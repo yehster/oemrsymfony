@@ -1,16 +1,10 @@
 <h2>Document Sections</h2>
-<table>
+<table class="results">
     {% for sec in sections %}
         <tr>
-            <td>
-                {{sec.getLongDesc()}}
-            </td>
-            <td>
-                {{sec.getCode()}}
-            </td>
-            <td>
-                {{sec.getCode_type()}}
-            </td>
+            <td class="description">{{sec.getLongDesc()}}</td>
+            <td class="code">{{sec.getCode()}}</td>
+            <td class="code_type">{{sec.getCode_type()}} </td>
         </tr>
     {% endfor %}
 

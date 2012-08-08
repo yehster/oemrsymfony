@@ -2,6 +2,13 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
+function vocab_item(source)
+{
+    this.description =source.find(".description").text();
+    this.code=source.find(".code").text();
+    this.code_type=source.find(".code_type").text();
+    return this;
+}
 function document_search()
 {
             var searchText=$("#document_input").val();
@@ -15,10 +22,21 @@ function document_search()
             function(data)
             {
                 $("#section_list").html(data);
+                bind_document_events();
             })
 
 }
+function select_section()
+{
+    var row=$(this).parent("tr");
+    var vocab_info=new vocab_item(row);
+    window.alert(vocab_info.description+":"+vocab_info.code);
+}
 
+function bind_document_events()
+{
+    $("#section_list").find(".description").on({click: select_section});
+}
 function document_keydown(evt)
 {
     if(evt.keyCode == 13)

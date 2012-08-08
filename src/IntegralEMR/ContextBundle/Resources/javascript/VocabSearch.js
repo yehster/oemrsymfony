@@ -25,15 +25,13 @@ function keyword_keydown(evt)
 function select_code()
 {
     var row=$(this).parent("tr");
-    var code = row.find(".code").text();
-    var codeDescription=row.find(".codeDescription").text();
-    var code_type=row.find(".code_type").text();
-    window.alert(code+":"+codeDescription+":"+code_type);
+    var vi= new vocab_item(row);
+    window.alert(vi.code+":"+vi.description+":"+vi.code_type);
 }
 
 function bind_keyword_events()
 {
-    $("#CodeSearch > .results .codeDescription").on({
+    $("#CodeSearch > .results .description").on({
         click: select_code
     });
 }
