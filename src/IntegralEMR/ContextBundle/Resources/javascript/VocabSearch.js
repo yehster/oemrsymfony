@@ -11,6 +11,7 @@ function keyword_search()
             function(data)
             {
                 $("#CodeSearch > .results").html(data);
+                bind_keyword_events();
             })
 
 }
@@ -20,6 +21,21 @@ function keyword_keydown(evt)
         {
             keyword_search();
         }
+}
+function select_code()
+{
+    var row=$(this).parent("tr");
+    var code = row.find(".code").text();
+    var codeDescription=row.find(".codeDescription").text();
+    var code_type=row.find(".code_type").text();
+    window.alert(code+":"+codeDescription+":"+code_type);
+}
+
+function bind_keyword_events()
+{
+    $("#CodeSearch > .results .codeDescription").on({
+        click: select_code
+    });
 }
 
 $("#keyword_input").on({

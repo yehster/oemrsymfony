@@ -17,3 +17,7 @@ root {
 div.section{
     float:left;
 }
+.results
+{
+    cursor: pointer;
+}

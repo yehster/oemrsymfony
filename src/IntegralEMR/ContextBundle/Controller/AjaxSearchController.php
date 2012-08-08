@@ -58,12 +58,20 @@ function findVocab($searchString,$vocab_type)
         $descFunc="getLONG_COMMON_NAME";
         $idFunc="getLOINC_NUM";        
     }
-    else if($vocab_type="SNOMED")
+    else if($vocab_type=="SNOMED")
     {
         $entityType="library\doctrine\Entities\SNOMED\PreferredTerm";
         $searchField="pt.str";
         $descFunc="getSTR";
         $idFunc="getAUI";
+        
+    }
+    else if($vocab_type=="IEMR")
+    {
+        $entityType="library\doctrine\Entities\IEMR\IEMRCode";
+        $searchField="pt.description";
+        $descFunc="getDescription";
+        $idFunc="getCode";
         
     }
         $qb = $GLOBALS['em']->createQueryBuilder()
@@ -99,7 +107,8 @@ function FindSections($keywords)
     $toks=explode(" ",$keywords);
     $qb = $GLOBALS['em']->createQueryBuilder();
     $qb->select("sec")
-       ->from("library\doctrine\Entities\SectionHeading","sec");
+       ->from("library\doctrine\Entities\SectionHeading","sec")
+       ->join("sec.ci","ci");
     $numToks=count($toks);
     if($numToks>0)
     {
@@ -111,8 +120,26 @@ function FindSections($keywords)
         $qb->andWhere("sec.longDesc like :token".$idx);
         $qb->setParameter("token".$idx,"%".$toks[$idx]."%");
     }
+    $qb->orderBy("ci.seq","ASC");
     $qry=$qb->getQuery();
-    $retval=$qry->getResult();
+    $results=$qry->getResult();
+    $parents=array();
+    foreach($results as $res)
+    {
+        $parentUUID=$res->getCi()->getParent()->getuuid();
+        if(empty($parents[$parentUUID]))
+        {
+            $parents[$parentUUID]=array();
+        }
+        $parents[$parentUUID][]=$res;
+    }
+    foreach($parents as $par)
+    {
+        foreach($par as $entry)
+        {
+            $retval[]=$entry;
+        }
+    }
     return $retval;
     
 }
