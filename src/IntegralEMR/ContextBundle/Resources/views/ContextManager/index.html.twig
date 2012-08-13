@@ -5,7 +5,11 @@
 <title>OpenEMR Context Manager</title>
 </head>
 <h1>OpenEMR Context Manager</h1>
-
+<div id='choices'>
+<div><span class='label'>Section:</span><span id='sectionChoice'></span></div>
+<div><span class='label'>Context:</span><span id='contextChoice'></span></div>
+<button id="create_group">Create Group</button>
+</div>
 <div class='section' id="CodeSearch">
     <input type="text" id="keyword_input"/>
     <br>
@@ -18,7 +22,9 @@
     <input type="text" id="document_input"/>
     <div id='section_list'></div>
 </div>
-{% javascripts '@IntegralEMRContextBundle/Resources/javascript/*' %}
+{% javascripts '@IntegralEMRContextBundle/Resources/javascript/GroupManagement.js'
+'@IntegralEMRContextBundle/Resources/javascript/SectionSearch.js'
+'@IntegralEMRContextBundle/Resources/javascript/VocabSearch.js' %}
     <script type="text/javascript" src="{{ asset_url }}"></script>
 {% endjavascripts %}
 {% stylesheets '@IntegralEMRContextBundle/Resources/css/*' %}

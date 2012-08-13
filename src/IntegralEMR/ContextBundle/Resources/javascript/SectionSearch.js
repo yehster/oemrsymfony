@@ -30,7 +30,10 @@ function select_section()
 {
     var row=$(this).parent("tr");
     var vocab_info=new vocab_item(row);
-    window.alert(vocab_info.description+":"+vocab_info.code);
+    var sec=$("#sectionChoice");
+    sec.html(vocab_info.description);
+    sec.attr("code",vocab_info.code);
+    sec.attr("code_type",vocab_info.code_type);
 }
 
 function bind_document_events()

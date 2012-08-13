@@ -1,7 +1,4 @@
-/* 
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 
 function keyword_search()
 {
@@ -26,12 +23,12 @@ function select_code()
 {
     var row=$(this).parent("tr");
     var vi= new vocab_item(row);
-    window.alert(vi.code+":"+vi.description+":"+vi.code_type);
+    $("#contextChoice").html(vi.description).attr("code",vi.code).attr("code_type",vi.code_type);
 }
 
 function bind_keyword_events()
 {
-    $("#CodeSearch > .results .description").on({
+    $("#CodeSearch > .results .context").on({
         click: select_code
     });
 }

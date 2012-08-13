@@ -9,10 +9,17 @@
 root { 
     display: block;
 }
-
+choices .label
+{
+    width: 10em;
+}
 #CodeSearch
 {
     width: 33%;
+}
+#selections
+{
+    clear: both;
 }
 div.section{
     float:left;
